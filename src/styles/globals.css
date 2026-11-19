@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sp-bg text-white font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-sp-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sp-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-sp-panel border border-sp-border rounded-xl;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-sp-lime/30 hover:shadow-lg hover:shadow-sp-lime/5;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-sp-lime text-sp-bg font-semibold rounded-lg 
+           hover:bg-sp-lime-dark transition-colors duration-200 
+           focus:outline-none focus:ring-2 focus:ring-sp-lime/50 focus:ring-offset-2 focus:ring-offset-sp-bg
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-sp-panel border border-sp-border text-white rounded-lg 
+           hover:bg-sp-hover hover:border-gray-500 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-sp-border focus:ring-offset-2 focus:ring-offset-sp-bg
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-red-600/20 border border-red-500/30 text-red-400 rounded-lg
+           hover:bg-red-600/30 hover:border-red-500/50 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-red-500/50;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-sp-bg border border-sp-border rounded-lg text-white
+           placeholder-gray-500 transition-colors duration-200
+           focus:outline-none focus:border-sp-lime/50 focus:ring-1 focus:ring-sp-lime/30;
+  }
+
+  .select-field {
+    @apply w-full px-4 py-2.5 bg-sp-bg border border-sp-border rounded-lg text-white
+           transition-colors duration-200 appearance-none cursor-pointer
+           focus:outline-none focus:border-sp-lime/50 focus:ring-1 focus:ring-sp-lime/30;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+  }
+
+  .textarea-field {
+    @apply w-full px-4 py-2.5 bg-sp-bg border border-sp-border rounded-lg text-white
+           placeholder-gray-500 transition-colors duration-200 resize-y min-h-[100px]
+           focus:outline-none focus:border-sp-lime/50 focus:ring-1 focus:ring-sp-lime/30;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .demo-badge {
+    @apply badge bg-amber-500/20 text-amber-400 border border-amber-500/30;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+  }
+
+  .section-title {
+    @apply text-xl font-semibold text-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: #0a0a0f !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.7) contrast(1.1) saturate(0.3) hue-rotate(180deg) invert(1);
+}
+
+.leaflet-control-zoom a {
+  background-color: #141419 !important;
+  color: #ffffff !important;
+  border-color: #2a2a35 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #1e1e26 !important;
+}
+
+.leaflet-control-attribution {
+  background-color: rgba(20, 20, 25, 0.85) !important;
+  color: #6b7280 !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #84cc16 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #141419 !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a35 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #141419 !important;
+  border: 1px solid #2a2a35 !important;
+}
+
+.leaflet-popup-close-button {
+  color: #9ca3af !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #ffffff !important;
+}
+
+/* Custom marker animations */
+@keyframes pulse-marker {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+.marker-pulse {
+  animation: pulse-marker 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.3s ease-out forwards;
+}
